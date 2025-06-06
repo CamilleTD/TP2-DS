@@ -28,8 +28,11 @@ def result(board, col, player):
     return board  # au cas ou la colonne est pleine
 
 def is_terminal(board):
-    return check_win(board, 1) or check_win(board, -1) or all(board[0][c] != 0 for c in range(COLUMNS))
-
+    total_tokens = sum(1 for row in board for cell in row if cell != 0)
+    return (
+       check_win(board, 1) or    
+       check_win(board, -1) or    
+       total_tokens >= 42   )       
 def check_win(board, player):
     # Horizontale
     for r in range(ROWS):
