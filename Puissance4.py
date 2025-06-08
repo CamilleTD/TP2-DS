@@ -171,12 +171,28 @@ def play_vs_IA():
     while not Terminal_Test(board):
         print_board(board)
         if current == human:
-            col = int(input(f"Ton coup (0-{COLUMNS-1}) : "))
+            while True:
+                try:
+                    col = int(input(f"Ton coup (0-{COLUMNS-1}) : "))
+                    if col < 0 or col >= COLUMNS:
+                        print("Colonne invalide. Choisis une colonne entre 0 et", COLUMNS-1)
+                    elif board[0][col] != 0:
+                        print("Colonne remplie. Choisis une autre colonne.")
+                    else:
+                        break
+                except ValueError:
+                    print("Entrée invalide. Merci d’entrer un nombre.")
         else:
             col = IA_Decision(board)
             print(f"L'IA joue : {col}")
-        board = result(board, col, current)
-        current *= -1
+            if board[0][col] != 0:
+                print(f"L'IA a choisi une colonne pleine ({col}). Elle passe son tour.")
+                col = None
+        
+        if col is not None:
+            board = result(board, col, current)
+            current *= -1
+
 
     print_board(board)
     if check_win(board, 1):
@@ -188,4 +204,3 @@ def play_vs_IA():
 
 # Pour lancer un test
 play_vs_IA()
-
