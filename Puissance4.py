@@ -150,9 +150,23 @@ def Terminal_Test(board):
 # Lancer un test IA vs Humain
 def play_vs_IA():
     board = initial_state()
-    human = int(input("Tu veux être joueur 1 (1) ou joueur 2 (-1) ? "))
-    ia = -human
-    current = 1
+    
+    # Boucle pour s'assurer que l'utilisateur entre 1 ou 2
+    while True:
+        choix = input("Tu veux être joueur 1 (1) ou joueur 2 (2) ? ")
+        if choix in ['1', '2']:
+            human = int(choix)
+            break
+        else:
+            print("Entrée invalide. Merci de taper 1 ou 2.")
+    if human == 1:
+        human = 1
+        ia = -1
+    else:
+        human = -1
+        ia = 1
+
+    current = 1  # Le joueur 1 commence
 
     while not Terminal_Test(board):
         print_board(board)
@@ -174,5 +188,4 @@ def play_vs_IA():
 
 # Pour lancer un test
 play_vs_IA()
-
 
