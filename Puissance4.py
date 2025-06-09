@@ -38,7 +38,7 @@ def is_terminal(board):
     return (
        check_win(board, 1) or    # Joueur 1 gagne
        check_win(board, -1) or   # Joueur 2 gagne
-       total_tokens >= ROWS * COLUMNS  # match nul
+       total_tokens >= 42  # match nul
     )
 
 # Vérifie si un joueur donné a gagné
