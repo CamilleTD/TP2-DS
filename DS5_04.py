@@ -1,4 +1,5 @@
 # %% Puissance 4 : Affrontement entre IA 
+#Justine ROECKER, Nancy THOMAS, Camille TURA--DURAND
 import math
 import random
 import copy
